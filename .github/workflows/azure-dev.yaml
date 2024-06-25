@@ -56,7 +56,12 @@ jobs:
         shell: pwsh
 
       - name: Provision Infrastructure
-        run: azd provision --no-prompt
+        run: |
+            echo "Running commands in subfolder"
+            ls -la
+            azd provision --no-prompt --env-name ${{ env.AZURE_ENV_NAME }} --location ${{ env.AZURE_LOCATION }} 
+        working-directory: AspireDeploy.AppHost
 
       - name: Deploy Application
         run: azd deploy --no-prompt
+        working-directory: AspireDeploy.AppHost
