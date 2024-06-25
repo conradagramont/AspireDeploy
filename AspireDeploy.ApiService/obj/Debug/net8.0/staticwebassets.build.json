@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "RtcdD2RRRIXVx3kh3ZZN748JDtMdy9nCy6pG8nWnb/8=",
+  "Source": "AspireDeploy.ApiService",
+  "BasePath": "_content/AspireDeploy.ApiService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
