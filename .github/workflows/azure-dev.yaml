@@ -55,10 +55,22 @@ jobs:
             --tenant-id "$($info.tenantId)"
         shell: pwsh
 
+      - name: Extract Solution Name
+        id: extract_solution_name
+        run: |
+            # Extract the solution name from the .sln file
+            SOLUTION_NAME=$(ls *.sln | sed 's/\.sln$//')
+            echo "Solution Name: $SOLUTION_NAME"
+            echo "SOLUTION_NAME=$SOLUTION_NAME" >> $GITHUB_ENV
+
+      - name: Use Solution Name
+        run: |
+            echo "The solution name is ${{ env.SOLUTION_NAME }}"
+
       - name: Provision Infrastructure
         run: azd provision --no-prompt
-        working-directory: AspireDeploy.AppHost
+        working-directory: ${{ env.SOLUTION_NAME }}.AppHost
 
       - name: Deploy Application
         run: azd deploy --no-prompt
-        working-directory: AspireDeploy.AppHost
+        working-directory: ${{ env.SOLUTION_NAME }}.AppHost
