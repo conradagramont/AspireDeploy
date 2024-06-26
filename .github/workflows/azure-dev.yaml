@@ -74,11 +74,10 @@ jobs:
       - name: Refresh azd env (pulls latest infrastructure provision)
         run: azd env refresh --no-prompt
         env:
+          AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
           AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
 
       - name: Deploy Application
         run: azd deploy --no-prompt
-        env:
-            AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
