@@ -68,15 +68,15 @@ jobs:
             echo "SOLUTION_NAME=$SOLUTION_NAME" >> $GITHUB_ENV
 
       - name: Provision Infrastructure
-        run: azd provision --no-prompt
+        run: azd provision --no-prompt --debug
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
 
       - name: Refresh azd env (pulls latest infrastructure provision)
-        run: azd env refresh --no-prompt
+        run: azd env refresh --no-prompt --debug
         env:
           AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
 
       - name: Deploy Application
-        run: azd deploy --no-prompt
+        run: azd deploy --no-prompt --debug
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
