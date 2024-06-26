@@ -37,7 +37,6 @@ jobs:
 
       - name: Configure AZD for Resource Group Deployments
         run: azd config set alpha.resourceGroupDeployments on
-        working-directory: ${{ env.SOLUTION_NAME }}.AppHost
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
