@@ -72,6 +72,7 @@ jobs:
         run: azd env refresh --no-prompt
         env:
           AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
+        working-directory: ${{ env.SOLUTION_NAME }}.AppHost
 
       - name: Deploy Application
         run: azd deploy --no-prompt
