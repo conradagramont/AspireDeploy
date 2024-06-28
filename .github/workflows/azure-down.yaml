@@ -61,6 +61,12 @@ jobs:
             echo "Solution Name: $SOLUTION_NAME"
             echo "SOLUTION_NAME=$SOLUTION_NAME" >> $GITHUB_ENV
 
+      - name: Refresh azd env (pulls latest infrastructure provision)
+        run: azd env refresh --no-prompt --debug
+        env:
+          AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
+        working-directory: ${{ env.SOLUTION_NAME }}.AppHost
+        
       - name: Delete Azure resources (includes not built via azd)
         run: azd down --force --purge
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
