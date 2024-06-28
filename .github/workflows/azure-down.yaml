@@ -1,6 +1,9 @@
 name: Drop Azure resources via AZD down
 # For more information on this YAML file, please reference blog: LINK TBD
 
+on: 
+  workflow_dispatch
+  
 permissions:
   id-token: write
   contents: read
