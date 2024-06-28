@@ -18,7 +18,7 @@ jobs:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
       AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
-      # AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,9 +28,6 @@ jobs:
 
       - name: Install .NET Aspire workload
         run: dotnet workload install aspire
-
-      #- name: Configure AZD for Resource Group Deployments
-      #  run: azd config set alpha.resourceGroupDeployments on
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
@@ -62,11 +59,11 @@ jobs:
             echo "SOLUTION_NAME=$SOLUTION_NAME" >> $GITHUB_ENV
 
       - name: Refresh azd env (pulls latest infrastructure provision)
-        run: azd env refresh --no-prompt --debug
+        run: azd env refresh --no-prompt
         env:
           AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
         
       - name: Delete Azure resources (includes not built via azd)
-        run: azd down --force --purge --debug
+        run: azd down --force --purge
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
