@@ -68,5 +68,5 @@ jobs:
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
         
       - name: Delete Azure resources (includes not built via azd)
-        run: azd down --force --purge
+        run: azd down --force --purge --debug
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
