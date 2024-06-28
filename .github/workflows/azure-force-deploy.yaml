@@ -59,7 +59,7 @@ jobs:
             echo "SOLUTION_NAME=$SOLUTION_NAME" >> $GITHUB_ENV
 
       - name: Force Provision Infrastructure if Deploy Application fail
-        run: azd provision --no-prompt --no-state --debug
+        run: azd provision --no-prompt --no-state
         env:
           AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
         working-directory: ${{ env.SOLUTION_NAME }}.AppHost
