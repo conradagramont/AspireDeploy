@@ -1,5 +1,5 @@
 name: .NET 8 Aspire to Azure Deployment
-# For more information on this YAML file, please reference blog: LINK TBD
+# For more information on this YAML file, please reference blog: https://agramont.net/blog/devops-intro-deploy-net-aspire-azure-github-actions
 
 on:
   workflow_dispatch:
